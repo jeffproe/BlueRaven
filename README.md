@@ -1,5 +1,10 @@
 # Blue Raven
 
+### Build
+
+`yarn install`
+`dotnet run`
+
 ### Helpful links
 
 - npm, webpack and sass following [this article](http://romansimuta.com/post/using-webpack-4-with-aspnet-core-21-mvc-application-to-process-es6-scripts-and-sass-styles)

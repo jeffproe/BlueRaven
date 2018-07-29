@@ -1,0 +1,25 @@
+body {
+	background-color: rgb(70, 68, 68);
+	color: rgb(199, 194, 194);
+}
+
+.body-content {
+	margin-top: 75px;
+}
+
+.large-icon {
+	font-size: 48px !important;
+	color: rgba(0, 0, 0, 0.5);
+}
+
+.nav-link > a {
+	color: rgb(199, 194, 194);
+}
+
+.navbar-brand {
+	color: rgb(199, 194, 194);
+}
+
+.hidden {
+	display: none !important;
+}
