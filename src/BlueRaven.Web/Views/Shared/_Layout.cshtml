@@ -1,6 +1,4 @@
-﻿@using Webpack
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -8,8 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BlueRaven.Web</title>
 
-    @await Html.WebpackStylesAsync("page-common")
-    @RenderSection("styles", required: false)
+    <environment include="Development">
+        <link rel="stylesheet" href="~/vendor.css" />
+        <link rel="stylesheet" href="~/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/vendor.min.css" />
+		<!-- TODO: Minify this! -->
+        <link rel="stylesheet" href="~/site.css" asp-append-version="true" />
+    </environment>
+	@RenderSection("styles", required: false)
 </head>
 <body>
 
@@ -41,7 +47,13 @@
 		</footer>
 	</div>
 
-	@await Html.WebpackScriptsAsync("page-common")
+    <environment include="Development">
+        <script src="~/vendor.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/vendor.min.js" asp-append-version="true"></script>
+    </environment>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

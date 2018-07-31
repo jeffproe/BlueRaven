@@ -1,6 +1,8 @@
+@import '_variables';
+
 body {
-	background-color: rgb(70, 68, 68);
-	color: rgb(199, 194, 194);
+	background-color: $background-dark;
+	color: $foreground-dark;
 }
 
 .body-content {
@@ -13,11 +15,11 @@ body {
 }
 
 .nav-link > a {
-	color: rgb(199, 194, 194);
+	color: $foreground-dark;
 }
 
 .navbar-brand {
-	color: rgb(199, 194, 194);
+	color: $foreground-dark;
 }
 
 .hidden {

@@ -37,6 +37,7 @@ wwwroot/
 node_modules/
 package.lock.json
 yarn.lock
+package-lock.json
 
 # sqlite db
 app.db

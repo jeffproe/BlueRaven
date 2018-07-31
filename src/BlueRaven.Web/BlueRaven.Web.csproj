@@ -18,35 +18,8 @@
 		<ProjectReference Include="..\BlueRaven.Data\BlueRaven.Data.csproj" />
 	</ItemGroup>
 
-
-	<ItemGroup>
-		<WebpackInputs Include="app\**\*" />
-		<WebpackInputs Include="webpack.config.ts" />
-	</ItemGroup>
-	<ItemGroup>
-		<WebpackOutputs Include="wwwroot\assets\**\*" />
-		<WebpackOutputs Include="wwwroot\css\**\*" />
-		<WebpackOutputs Include="wwwroot\js\**\*" />
-	</ItemGroup>
-	<ItemGroup>
-		<MvcRazorFilesToCompile Include="Views\**\*.cshtml" />
-	</ItemGroup>
-	<ItemGroup Condition="'@(WebpackOutputs)' == ''">
-		<!-- 
-      MSBuild skips a target if the Outputs item group evaluates to empty.
-      On the first build, there won't be any Webpack outputs (and we can't
-      predict what they will be because we don't know the hash results for
-      filenames), so instead we tell MSBuild there's an output file which
-      will never exist, which forces the target to always run on first
-      build.
-    -->
-		<WebpackOutputs Include="wwwroot\nonexistent.dat" />
-	</ItemGroup>
-	<Target Name="BuildClientAssets" BeforeTargets="BeforeBuild;MvcRazorPrecompile" Inputs="@(WebpackInputs)" Outputs="@(WebpackOutputs)">
-		<Exec Command="node_modules\.bin\webpack --progress" />
-		<ItemGroup>
-			<MvcRazorFilesToCompile Include="Views\Shared\Assets\*.cshtml" />
-		</ItemGroup>
+	<Target Name="RunGulp" BeforeTargets="Build">
+		<Exec Command="node_modules\.bin\gulp" />
 	</Target>
-	<Target Name="PrecompileRazorViews" AfterTargets="Build;BuildClientAssets" DependsOnTargets="MvcRazorPrecompile" />
+
 </Project>
