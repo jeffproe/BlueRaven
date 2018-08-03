@@ -1,25 +1,28 @@
 @import '_variables';
+@import '_spacing';
 
 body {
-	background-color: $background-dark;
-	color: $foreground-dark;
+	@extend %primary-colors;
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
 }
 
-.body-content {
-	margin-top: 75px;
+main {
+	flex: 1 0 auto;
+}
+
+nav {
+	@extend %secondary-colors;
+}
+
+.page-footer {
+	@extend %secondary-colors;
 }
 
 .large-icon {
 	font-size: 48px !important;
 	color: rgba(0, 0, 0, 0.5);
-}
-
-.nav-link > a {
-	color: $foreground-dark;
-}
-
-.navbar-brand {
-	color: $foreground-dark;
 }
 
 .hidden {

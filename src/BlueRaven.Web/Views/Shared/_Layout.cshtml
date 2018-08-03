@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http.Features
+
+@{
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+    var showBanner = !consentFeature?.CanTrack ?? false;
+    var cookieString = consentFeature?.CreateConsentCookie();
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BlueRaven.Web</title>
 
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <environment include="Development">
         <link rel="stylesheet" href="~/vendor.css" />
         <link rel="stylesheet" href="~/site.css" />
@@ -18,34 +27,58 @@
 	@RenderSection("styles", required: false)
 </head>
 <body>
-
-	<nav class="navbar navbar-inverse fixed-top navbar-expand-md">
-		<a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">BlueRaven.Web</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-					<li class="nav-link"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-					<li class="nav-link"><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-					<li class="nav-link"><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+	<header>
+		<div class="container">
+	<nav id="siteNav" class="@(showBanner ? "hidden" : "")">
+		<div class="nav-wrapper">
+			<a asp-area="" asp-controller="Home" asp-action="Index" class="brand-logo ml15">BlueRaven.Web</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+				<li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+				<li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+				<partial name="_LoginPartial" />
 			</ul>
-			<partial name="_LoginPartial" />
 		</div>
 	</nav>
 
-    <partial name="_CookieConsentPartial" />
+@if (showBanner)
+{
+	<div class="navbar-fixed">
+	<nav id="cookieConsent">
+		<div class="nav-wrapper">
+			<span class="brand-logo ml15"><i class="material-icons large-icon">info_outline</i></span>	
+			<ul class="right">
+				<li><span>Use this space to summarize your privacy and cookie use policy.</span></li>
+				<li><a asp-controller="Home" asp-action="Privacy" class="btn">Learn More</a></li>
+				<li><button type="button" class="btn mr15" data-cookie-string="@cookieString">Accept</button></li>
+			</ul>
+		</div>
+	</nav>
+	</div>
 
+    <script>
+        (function () {
+            document.querySelector("#cookieConsent button[data-cookie-string]").addEventListener("click", function (el) {
+                document.cookie = el.target.dataset.cookieString;
+                document.querySelector("#cookieConsent").classList.add("hidden");
+				document.querySelector("#siteNav").classList.remove("hidden");
+            }, false);
+        })();
+    </script>
+}
+</div>
+	</header>
+<main>
     <div class="container body-content">
         @RenderBody()
     </div>
-	<div  class="fixed-bottom">
-		<hr />
-		<footer>
-			<p>&copy; 2018 - BlueRaven.Web</p>
-		</footer>
-	</div>
+	</main>
+	<footer class="page-footer container">
+			<hr />
+		<div class="footer-copyright">
+			&copy; 2018 - BlueRaven.Web
+		</div>
+	</footer>
 
     <environment include="Development">
         <script src="~/vendor.js" asp-append-version="true"></script>
