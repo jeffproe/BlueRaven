@@ -1,12 +1,4 @@
-﻿@using Microsoft.AspNetCore.Http.Features
-
-@{
-    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
-    var showBanner = !consentFeature?.CanTrack ?? false;
-    var cookieString = consentFeature?.CreateConsentCookie();
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -28,45 +20,7 @@
 </head>
 <body>
 	<header>
-		<div class="container">
-	<nav id="siteNav" class="@(showBanner ? "hidden" : "")">
-		<div class="nav-wrapper">
-			<a asp-area="" asp-controller="Home" asp-action="Index" class="brand-logo ml15">BlueRaven.Web</a>
-			<ul id="nav-mobile" class="right hide-on-med-and-down">
-				<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-				<li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-				<li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-				<partial name="_LoginPartial" />
-			</ul>
-		</div>
-	</nav>
-
-@if (showBanner)
-{
-	<div class="navbar-fixed">
-	<nav id="cookieConsent">
-		<div class="nav-wrapper">
-			<span class="brand-logo ml15"><i class="material-icons large-icon">info_outline</i></span>	
-			<ul class="right">
-				<li><span>Use this space to summarize your privacy and cookie use policy.</span></li>
-				<li><a asp-controller="Home" asp-action="Privacy" class="btn">Learn More</a></li>
-				<li><button type="button" class="btn mr15" data-cookie-string="@cookieString">Accept</button></li>
-			</ul>
-		</div>
-	</nav>
-	</div>
-
-    <script>
-        (function () {
-            document.querySelector("#cookieConsent button[data-cookie-string]").addEventListener("click", function (el) {
-                document.cookie = el.target.dataset.cookieString;
-                document.querySelector("#cookieConsent").classList.add("hidden");
-				document.querySelector("#siteNav").classList.remove("hidden");
-            }, false);
-        })();
-    </script>
-}
-</div>
+		<partial name="_NavPartial" />
 	</header>
 <main>
     <div class="container body-content">
