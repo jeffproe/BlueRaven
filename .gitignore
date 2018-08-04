@@ -42,4 +42,5 @@ package-lock.json
 # sqlite db
 app.db
 
-_Gen_*.cshtml
+# log files
+BR*.txt

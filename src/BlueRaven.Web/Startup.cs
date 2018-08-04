@@ -34,12 +34,6 @@ namespace BlueRaven.Web
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
 
-			// services.AddDbContext<BRContext>(options =>
-			// 	options.UseSqlite(
-			// 		Configuration.GetConnectionString("DefaultConnection")));
-			// services.AddDefaultIdentity<IdentityUser>()
-			// 	.AddEntityFrameworkStores<BRContext>();
-
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 		}
 
