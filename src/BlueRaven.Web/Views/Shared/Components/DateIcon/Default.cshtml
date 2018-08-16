@@ -1,0 +1,9 @@
+@using System
+
+@model DateTime
+
+<time datetime=@Model.ToString("yyyy-MM-dd") class="icon">
+  <em>@Model.DayOfWeek.ToString()</em>
+  <strong>@Model.ToString("MMMM") '@Model.ToString("yy")</strong>
+  <span>@Model.ToString("dd")</span>
+</time>

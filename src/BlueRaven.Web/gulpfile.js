@@ -27,7 +27,17 @@ var vendorScriptsMin = [
 var vendorStyles = ['node_modules/materialize-css/dist/css/materialize.css'];
 var vendorScripts = ['node_modules/materialize-css/dist/js/materialize.js'];
 
-gulp.task('default', ['build-vendor', 'compile:sass']);
+var qrScripts = ['lib/qrcode.min.js'];
+
+var prismStyles = ['lib/prism.css'];
+var prismScripts = ['lib/prism.js'];
+
+gulp.task('default', [
+	'build-vendor',
+	'compile:sass',
+	'build-prism',
+	'build-qr'
+]);
 
 gulp.task('build-vendor', [
 	'build-vendor-min-css',
@@ -43,6 +53,8 @@ gulp.task('compile:sass', function() {
 		.pipe(gulp.dest(scssDest));
 });
 
+gulp.task('build-prism', ['build-prism-css', 'build-prism-js']);
+
 gulp.task('build-vendor-css', () => {
 	return gulp
 		.src(vendorStyles)
@@ -57,6 +69,20 @@ gulp.task('build-vendor-js', () => {
 		.pipe(gulp.dest(webroot));
 });
 
+gulp.task('build-prism-css', () => {
+	return gulp
+		.src(prismStyles)
+		.pipe(concat('prism.css'))
+		.pipe(gulp.dest(webroot));
+});
+
+gulp.task('build-prism-js', () => {
+	return gulp
+		.src(prismScripts)
+		.pipe(concat('prism.js'))
+		.pipe(gulp.dest(webroot));
+});
+
 gulp.task('build-vendor-min-css', () => {
 	return gulp
 		.src(vendorStylesMin)
@@ -68,5 +94,12 @@ gulp.task('build-vendor-min-js', () => {
 	return gulp
 		.src(vendorScriptsMin)
 		.pipe(concat('vendor.min.js'))
+		.pipe(gulp.dest(webroot));
+});
+
+gulp.task('build-qr', () => {
+	return gulp
+		.src(qrScripts)
+		.pipe(concat('qrcode.min.js'))
 		.pipe(gulp.dest(webroot));
 });

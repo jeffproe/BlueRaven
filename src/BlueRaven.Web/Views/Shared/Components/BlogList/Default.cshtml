@@ -1,0 +1,18 @@
+@using System.Collections.Generic
+@using BlueRaven.Web.Models;
+@using BlueRaven.Web.ViewComponents;
+
+@model PagedPosts
+
+@{
+	if(null != Model)
+	{
+		foreach(var post in Model.Posts)
+		{
+			<div class="card">
+				@await Component.InvokeAsync(typeof(ExcerptViewComponent), new {post = post})
+			</div>
+		}
+		@await Component.InvokeAsync(typeof(PagerViewComponent), new {model = Model})
+	}
+}

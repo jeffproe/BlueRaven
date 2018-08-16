@@ -1,0 +1,15 @@
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using BlueRaven.Data.Domain
+@using BlueRaven.Web.ViewComponents;
+
+@model IPost
+
+<div class="card">
+	<div class="card-content">
+		<span class="card-title post-title">@Model.Title</span>
+		<div class="post-header">
+			<div class="mr15">@await Component.InvokeAsync(typeof(DateIconViewComponent), new {date = Model.PubDate})</div>
+			<div>@Html.Raw(Model.Content)</div>
+		</div>
+	</div>
+</div>

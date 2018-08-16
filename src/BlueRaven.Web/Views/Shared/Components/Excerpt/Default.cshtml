@@ -1,0 +1,13 @@
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using BlueRaven.Data.Models
+@using BlueRaven.Web.ViewComponents;
+
+@model Post
+
+<div class="card-content ">
+	<a class="card-title post-title" href="@Model.Slug">@Model.Title</a>
+	<div class="post-header">
+		<div class="mr15">@await Component.InvokeAsync(typeof(DateIconViewComponent), new {date = Model.PubDate})</div>
+		<div>@Html.Raw(Model.Excerpt)&nbsp;<a class="read-more" href="@Model.Slug">Read More</a></div>
+	</div>
+</div>

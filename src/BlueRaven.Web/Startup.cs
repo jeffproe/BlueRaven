@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BlueRaven.Data;
+using BlueRaven.Svc;
 
 namespace BlueRaven.Web
 {
@@ -35,6 +36,11 @@ namespace BlueRaven.Web
 			});
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+			services.AddTransient<BlogService>();
+			services.AddTransient<PostService>();
+
+			services.AddMemoryCache();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

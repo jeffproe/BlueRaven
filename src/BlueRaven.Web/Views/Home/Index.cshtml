@@ -1,5 +1,14 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using BlueRaven.Web.Models;
+@using BlueRaven.Data.Domain;
+@using BlueRaven.Web.ViewComponents;
+
+@model PagedPosts;
+
+@{
+    ViewData["Title"] = @Model.Blog.Title;
 }
 
-<h2>This is Only a Test</h2>
+<section>
+	@await Component.InvokeAsync(typeof(BlogListViewComponent), new {posts = Model})
+</section>
+

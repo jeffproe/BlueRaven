@@ -1,5 +1,7 @@
 @import '_variables';
 @import '_spacing';
+@import '_prism';
+@import '_dateIcon';
 
 body {
 	@extend %primary-colors;
@@ -15,6 +17,13 @@ main {
 nav {
 	@extend %secondary-colors;
 }
+nav .brand-logo {
+	@extend %secondary-colors;
+}
+
+nav ul a {
+	@extend %secondary-colors;
+}
 
 .page-footer {
 	@extend %secondary-colors;
@@ -22,9 +31,41 @@ nav {
 
 .large-icon {
 	font-size: 48px !important;
-	color: rgba(0, 0, 0, 0.5);
+	color: $black-alpha-05;
 }
 
 .hidden {
 	display: none !important;
+}
+
+.card {
+	background: $white-alpha-05 !important;
+}
+
+.post-title {
+	color: $color-secondary-2-1;
+	font-size: 1.85rem !important;
+	font-weight: 400 !important;
+}
+
+.post-header {
+	display: flex;
+	flex-direction: row;
+}
+
+.read-more {
+	color: $color-secondary-2-1;
+}
+
+.pagination li a {
+	color: $color-secondary-2-1;
+}
+
+.pagination li a[class='selected'] {
+	color: $color-secondary-1-1;
+}
+
+.pager {
+	display: flex;
+	justify-content: center;
 }

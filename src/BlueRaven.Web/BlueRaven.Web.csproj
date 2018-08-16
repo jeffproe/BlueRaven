@@ -11,6 +11,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.App" />
+		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.1.1" />
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" PrivateAssets="All" />
 		<PackageReference Include="Serilog.AspNetCore" Version="2.1.1" />
 		<PackageReference Include="Serilog.Settings.Configuration" Version="2.6.1" />
@@ -21,6 +22,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\BlueRaven.Data\BlueRaven.Data.csproj" />
+		<ProjectReference Include="..\BlueRaven.Svc\BlueRaven.Svc.csproj" />
 	</ItemGroup>
 
 	<Target Name="RunGulp" BeforeTargets="Build">
