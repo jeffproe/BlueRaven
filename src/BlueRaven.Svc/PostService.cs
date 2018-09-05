@@ -84,7 +84,6 @@ namespace BlueRaven.Svc
 
 					if (null != post)
 					{
-						post.Slug = fullSlug;
 						await _context.SaveChangesAsync();
 						_logger.LogInformation($"Updated {fullSlug} slug");
 					}

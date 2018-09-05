@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BlueRaven.Data;
 using BlueRaven.Svc;
+using BlueRaven.Web.Framework;
 
 namespace BlueRaven.Web
 {
@@ -35,10 +36,12 @@ namespace BlueRaven.Web
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
 
-			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+			services.AddScoped<BlogService>();
+			services.AddScoped<PostService>();
 
-			services.AddTransient<BlogService>();
-			services.AddTransient<PostService>();
+			services.AddScoped<IApplicationContext, ApplicationContext>();
+
+			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
 			services.AddMemoryCache();
 		}
@@ -62,6 +65,8 @@ namespace BlueRaven.Web
 			app.UseCookiePolicy();
 
 			app.UseAuthentication();
+
+			app.UseApplicationContext();
 
 			app.UseMvc(routes =>
 			{

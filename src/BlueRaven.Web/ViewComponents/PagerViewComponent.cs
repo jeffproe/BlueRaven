@@ -6,7 +6,7 @@ namespace BlueRaven.Web.ViewComponents
 {
 	public class PagerViewComponent : ViewComponent
 	{
-		public async Task<IViewComponentResult> InvokeAsync(PagedPosts model)
+		public async Task<IViewComponentResult> InvokeAsync(BlogModel model)
 		{
 			return View(model);
 		}

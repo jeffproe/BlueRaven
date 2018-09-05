@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,7 +15,14 @@ namespace BlueRaven.Data
 
 		private static void PerformMigrations(IServiceProvider services)
 		{
-			services.GetRequiredService<BRContext>().Database.Migrate();
+			try
+			{
+				services.GetRequiredService<BRContext>().Database.Migrate();
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex.ToString());
+			}
 		}
 
 		private static void SeedData(IServiceProvider services)

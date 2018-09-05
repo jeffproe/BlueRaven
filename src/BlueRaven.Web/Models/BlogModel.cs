@@ -3,10 +3,11 @@ using BlueRaven.Data.Domain;
 
 namespace BlueRaven.Web.Models
 {
-	public class PagedPosts
+	public class BlogModel
 	{
 		public IBlog Blog { get; set; }
 		public IEnumerable<IPost> Posts { get; set; }
+		public IPost Post { get; set; }
 
 		private int _page;
 		public int Page

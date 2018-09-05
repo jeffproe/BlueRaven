@@ -1,4 +1,7 @@
 @using Microsoft.AspNetCore.Http.Features
+@using BlueRaven.Web.Models;
+
+@model BlogModel
 
 @{
     var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
@@ -10,7 +13,7 @@
 <div class="container">
 	<nav id="siteNav" class="@(showBanner ? "hidden" : "")">
 		<div class="nav-wrapper">
-			<a asp-area="" asp-controller="Home" asp-action="Index" class="brand-logo ml25">BlueRaven.Web</a>
+			<a asp-area="" asp-controller="Home" asp-action="Index" class="brand-logo ml25">@Model.Blog.Title</a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
 				<li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>

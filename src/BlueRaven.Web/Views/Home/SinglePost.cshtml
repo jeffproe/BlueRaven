@@ -1,13 +1,13 @@
-@using BlueRaven.Data.Domain
+@using BlueRaven.Web.Models;
 
-@model IPost
+@model BlogModel
 
 @section Styles {
 	<link rel="stylesheet" href="~/prism.css">
 }
 
 <section>
-	@await Component.InvokeAsync("Post", new {post = Model})
+	@await Component.InvokeAsync("Post", new {post = Model.Post})
 </section>
 
 @section Scripts {

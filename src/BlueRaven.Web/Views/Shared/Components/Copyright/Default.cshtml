@@ -1,0 +1,12 @@
+@using BlueRaven.Data.Domain;
+
+@model IBlog
+
+@{
+    var copyright = $"&copy; {DateTime.Now.Year} - {Model.Title}";
+}
+
+<hr />
+<div class="footer-copyright pl25">
+	@Html.Raw(copyright)
+</div>

@@ -1,10 +1,20 @@
-﻿<!DOCTYPE html>
+﻿@using BlueRaven.Web.Models;
+@using BlueRaven.Web.ViewComponents;
+
+@model BlogModel
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BlueRaven.Web</title>
+
+    <title>@Model.Blog.Title</title>
+	@if(!string.IsNullOrWhiteSpace(Model.Blog.FaviconUrl))
+	{
+		<link rel='shortcut icon' type='image/x-icon' href='@Model.Blog.FaviconUrl' />
+	}
 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <environment include="Development">
@@ -20,7 +30,7 @@
 </head>
 <body>
 	<header>
-		<partial name="_NavPartial" />
+		@await Html.PartialAsync("_NavPartial", Model)
 	</header>
 <main>
     <div class="container body-content">
@@ -28,10 +38,7 @@
     </div>
 	</main>
 	<footer class="page-footer container">
-			<hr />
-		<div class="footer-copyright pl25">
-			&copy; 2018 - BlueRaven.Web
-		</div>
+		@await Component.InvokeAsync(typeof(CopyrightViewComponent))
 	</footer>
 
     <environment include="Development">

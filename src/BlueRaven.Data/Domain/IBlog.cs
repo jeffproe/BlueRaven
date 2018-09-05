@@ -9,5 +9,6 @@ namespace BlueRaven.Data.Domain
 		string Theme { get; set; }
 		string Title { get; set; }
 		string Url { get; set; }
+		string FaviconUrl { get; set; }
 	}
 }

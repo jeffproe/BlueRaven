@@ -8,30 +8,26 @@ using BlueRaven.Web.Models;
 using BlueRaven.Svc;
 using Microsoft.Extensions.Logging;
 using BlueRaven.Data.Domain;
+using BlueRaven.Web.Framework;
 
 namespace BlueRaven.Web.Controllers
 {
 	[Route("")]
-	public class HomeController : Controller
+	public class HomeController : BaseController
 	{
-		public HomeController(BlogService blogService, PostService postService, ILogger<HomeController> logger)
+		public HomeController(BlogService blogService, PostService postService, ILogger<HomeController> logger, IApplicationContext appContext)
+		: base(blogService, postService, logger, appContext)
 		{
-			_blogService = blogService;
-			_postService = postService;
-			_logger = logger;
+
 		}
 
-		private BlogService _blogService;
-		private PostService _postService;
-		private ILogger _logger;
 
 		[HttpGet("")]
 		public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
 		{
-			var pageData = new PagedPosts();
-			// TODO: get the blog Id for real
-			pageData.Blog = _blogService.GetById("blog1");
-			var ret = await _postService.GetPagedAsync(pageData.Blog.Id, page, pageSize);
+			var pageData = new BlogModel();
+			pageData.Blog = Blog;
+			var ret = await _postService.GetPagedAsync(Blog.Id, page, pageSize);
 			pageData.Posts = ret.list;
 			pageData.PageCount = ret.pageCount;
 			pageData.Page = page;
@@ -43,12 +39,15 @@ namespace BlueRaven.Web.Controllers
 		{
 			try
 			{
-				// TODO: get the blog Id for real
-				IPost post = await _postService.GetBySlugAsync("blog1", year, month, day, slug);
-
-				if (post != null)
+				var singlePost = new BlogModel()
 				{
-					return View(post);
+					Blog = Blog,
+					Post = await _postService.GetBySlugAsync(Blog.Id, year, month, day, slug)
+				};
+
+				if (singlePost.Post != null)
+				{
+					return View(singlePost);
 				}
 			}
 			catch

@@ -1,12 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
+using System.Text;
 using BlueRaven.Data.Domain;
+using BlueRaven.Data.Extensions;
 
 namespace BlueRaven.Data.Models
 {
 	public class Post : IPost
 	{
+		private string _slug;
+
 		public Post()
 		{
 			PubDate = DateTime.UtcNow;
@@ -15,7 +20,6 @@ namespace BlueRaven.Data.Models
 			Keywords = String.Empty;
 			Title = String.Empty;
 			Author = String.Empty;
-			Slug = String.Empty;
 			Excerpt = String.Empty;
 			Content = String.Empty;
 			Categories = String.Empty;
@@ -31,7 +35,21 @@ namespace BlueRaven.Data.Models
 		//[XmlRpcProperty("author")]
 		public string Author { get; set; }
 		//[XmlRpcProperty("wp_slug")]
-		public string Slug { get; set; }
+		public string Slug
+		{
+			get
+			{
+				if (string.IsNullOrWhiteSpace(_slug))
+				{
+					_slug = CreateSlug();
+				}
+				return _slug;
+			}
+			set
+			{
+				_slug = value;
+			}
+		}
 		private string _excerpt;
 		//[XmlRpcProperty("mt_excerpt")]
 		public string Excerpt
@@ -78,5 +96,14 @@ namespace BlueRaven.Data.Models
 		}
 		[ForeignKey("BlogId")]
 		public Blog Blog { get; set; }
+
+		private string CreateSlug()
+		{
+			string title = Title.ToLowerInvariant().Replace(" ", "-");
+			title = title.RemoveDiacritics();
+			title = title.RemoveReservedUrlCharacters();
+
+			return $"{PubDate.Year}/{PubDate.Month}/{PubDate.Day}/{title.ToLowerInvariant()}";
+		}
 	}
 }

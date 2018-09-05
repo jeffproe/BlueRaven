@@ -33,7 +33,9 @@ msbuild.wrn
 # Visual Studio 2015
 .vs/
 
-wwwroot/
+src/BlueRaven.Web/wwwroot/**
+ !src/BlueRaven.Web/wwwroot/favicon.ico
+
 node_modules/
 package.lock.json
 yarn.lock
