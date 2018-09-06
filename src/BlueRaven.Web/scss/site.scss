@@ -43,7 +43,7 @@ nav ul a {
 }
 
 .post-title {
-	color: $color-secondary-2-1;
+	color: $color-secondary-2-4;
 	font-size: 1.85rem !important;
 	font-weight: 400 !important;
 }
@@ -54,11 +54,11 @@ nav ul a {
 }
 
 .read-more {
-	color: $color-secondary-2-1;
+	color: $color-secondary-2-4;
 }
 
 .pagination li a {
-	color: $color-secondary-2-1;
+	color: $color-secondary-2-4;
 }
 
 .pagination li a[class='selected'] {
@@ -68,4 +68,8 @@ nav ul a {
 .pager {
 	display: flex;
 	justify-content: center;
+}
+
+p {
+	padding-bottom: 10px;
 }
