@@ -27,7 +27,7 @@ time.icon strong {
 	position: absolute;
 	top: 0;
 	padding: 0.4em 0;
-	color: $black-alpha-60;
+	color: $white-alpha-75;
 	background-color: $color-secondary-2-4;
 	border-bottom: 1px dashed lighten($color-secondary-2-4, 5%);
 	box-shadow: 0 2px 0 darken($color-secondary-2-4, 15%);
@@ -37,7 +37,7 @@ time.icon strong {
 time.icon em {
 	position: absolute;
 	bottom: 0.25em;
-	color: darken($color-complement-4, 25%);
+	color: $white-alpha-75;
 }
 
 // day of month
@@ -45,5 +45,5 @@ time.icon span {
 	font-size: 2.8em;
 	letter-spacing: -0.05em;
 	padding-top: 0.8em;
-	color: darken($color-complement-4, 25%);
+	color: $white-alpha-75;
 }

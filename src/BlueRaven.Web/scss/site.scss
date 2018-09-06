@@ -26,12 +26,13 @@ nav ul a {
 }
 
 .page-footer {
-	@extend %secondary-colors;
+	background: $color-secondary-2-4;
+	color: $white-alpha-80;
 }
 
 .large-icon {
 	font-size: 48px !important;
-	color: $black-alpha-05;
+	color: $white-alpha-75;
 }
 
 .hidden {
@@ -43,7 +44,7 @@ nav ul a {
 }
 
 .post-title {
-	color: $color-secondary-2-4;
+	color: $color-secondary-2-3;
 	font-size: 1.85rem !important;
 	font-weight: 400 !important;
 }
@@ -54,7 +55,7 @@ nav ul a {
 }
 
 .read-more {
-	color: $color-secondary-2-4;
+	color: $color-secondary-2-3;
 }
 
 .pagination li a {
@@ -72,4 +73,12 @@ nav ul a {
 
 p {
 	padding-bottom: 10px;
+}
+
+.btn-primary {
+	background-color: $color-secondary-1-2;
+}
+
+.btn-primary:hover {
+	background-color: lighten($color-secondary-1-2, 5%);
 }
