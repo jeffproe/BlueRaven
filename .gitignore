@@ -35,6 +35,7 @@ msbuild.wrn
 
 src/BlueRaven.Web/wwwroot/**
  !src/BlueRaven.Web/wwwroot/favicon.ico
+ !src/BlueRaven.Web/wwwroot/assets/img/*
 
 node_modules/
 package.lock.json
