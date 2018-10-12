@@ -1,11 +1,14 @@
 # Blue Raven
 
+> This is my personal project to learn more about a bunch of different web technologies. I may or may not use it as an actual blog platform. I'm not sure anyone else should even concider it.
+
 ### Build
 
-`yarn install`
+`npm install`
 `dotnet run`
 
-### Helpful links
+### Contributing
 
-- npm, webpack and sass following [this article](http://romansimuta.com/post/using-webpack-4-with-aspnet-core-21-mvc-application-to-process-es6-scripts-and-sass-styles)
-- [Using Webpack and TypeScript with ASP.NET Core 2](https://medium.com/redpoint/using-webpack-and-typescript-with-asp-net-core-2-2b2d7f6b7f16)
+-   Add a feature request
+-   Add a bug report
+-   Submit a PR
