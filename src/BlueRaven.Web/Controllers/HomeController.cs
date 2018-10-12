@@ -63,7 +63,12 @@ namespace BlueRaven.Web.Controllers
 		{
 			ViewData["Message"] = "Your application description page.";
 
-			return View();
+			var model = new BlogModel()
+			{
+				Blog = Blog
+			};
+
+			return View(model);
 		}
 
 		[HttpGet("contact")]
@@ -71,13 +76,22 @@ namespace BlueRaven.Web.Controllers
 		{
 			ViewData["Message"] = "Your contact page.";
 
-			return View();
+			var model = new BlogModel()
+			{
+				Blog = Blog
+			};
+
+			return View(model);
 		}
 
 		[HttpGet("privacy")]
 		public IActionResult Privacy()
 		{
-			return View();
+			var model = new BlogModel()
+			{
+				Blog = Blog
+			};
+			return View(model);
 		}
 
 		[HttpGet("error")]
